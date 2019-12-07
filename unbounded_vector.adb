@@ -1,0 +1,42 @@
+package body Unbounded_Vector is
+   
+   -- Given a filename, reads strings line by line to vector
+   procedure Read_File_To_Vec 
+     (File_Name: String; File_Vector: in out String_Vector.Vector) is
+      -- Declarations
+      InputFile : File_Type;
+      package SUIO renames Ada.Text_IO.Unbounded_IO;
+   begin
+      -- Open file, handle is called InputFile
+      Open(File => InputFile,
+           Mode => In_File,
+           Name => File_Name);
+      -- For each line, add it to the File_Vector
+      loop
+         File_Vector.Append(SUIO.Get_Line(InputFile));
+      end loop;
+      -- Catches exception from SUIO.Get_Line EOF
+   exception
+      when End_Error =>
+         null;
+   end Read_File_To_Vec;
+   
+   -- Given a vector of unbounded strings, prints them all to screen   
+   procedure Print_Vec (File_Vector: String_Vector.Vector) is
+      package SUIO renames Ada.Text_IO.Unbounded_IO;
+   begin
+      for E of File_Vector loop
+         SUIO.Put_Line(E);
+      end loop;
+   end Print_Vec;
+
+   -- Given a vector of unbounded strings, converts them to a vector of ints
+   procedure File_Vec_To_Int_Vec 
+     (File_Vector: String_Vector.Vector; Int_Vector: in out Integer_Vector.Vector) is
+   begin 
+      for E of File_Vector loop
+         Int_Vector.Append(Integer'Value(To_String(E)));
+      end loop;
+   end File_Vec_To_Int_Vec;
+   
+end Unbounded_Vector;
