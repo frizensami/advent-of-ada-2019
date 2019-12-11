@@ -15,9 +15,18 @@ is
        SPARK_Mode => Off
    is
       Final_Sum : Integer := 0;
+      Remaining_Fuel_Requirement : Integer := 0;
    begin
+      -- For each module on the craft
       for E of Int_Vec loop
-         Final_Sum := Final_Sum + Mass_To_Fuel(E);
+         -- Convert it to fuel for a start
+         Remaining_Fuel_Requirement := Mass_To_Fuel(E);
+         -- While this fuel amount is not 0, calculate amount of fuel required
+         --   for the previous amount of fuel added, and add to total.
+         while Remaining_Fuel_Requirement > 0 loop 
+            Final_Sum := Final_Sum + Remaining_Fuel_Requirement;
+            Remaining_Fuel_Requirement := Mass_To_Fuel(Remaining_Fuel_Requirement);
+         end loop;
       end loop;
       return Final_Sum;
    end Sum_Vec_Mass_To_Fuel;
