@@ -11,7 +11,7 @@ procedure day2 is
    File_Vec : String_Vector.Vector;
    Opcode_String : Unbounded_String;
    Program_Vec : Integer_Vector.Vector;
-   Program_Vec_Copy : Integer_Vector.Vector;
+   
    File_Name : constant String := "day2.txt";
    subtype NounVerb is Integer range 0..99;
    Program_Result : Integer := 0;
@@ -28,9 +28,8 @@ begin
    for noun in NounVerb'Range loop
       for verb in NounVerb'Range loop
          -- Copy required since we modify the program during this process
-         Program_Vec_Copy := Program_Vec.Copy;
          -- Run the program on this combination of noun and verb
-         Program_Result := Execute_Opcode(Program_Vec_Copy, noun, verb);
+         Program_Result := Execute_Opcode(Program_Vec, noun, verb);
          -- Found the correct result
          if Program_Result = 19690720 then
             Put_Line("Noun: " & Noun'Image 
