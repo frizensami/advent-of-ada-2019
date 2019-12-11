@@ -39,4 +39,20 @@ package body Unbounded_Vector is
       end loop;
    end File_Vec_To_Int_Vec;
    
+   -- Converts an opcode string (day2) to a vector of integers
+   procedure Opcode_To_Int_Vec
+     (Opcode_String: Unbounded_String; Int_Vector: in out Integer_Vector.Vector) is
+      Opcode : String := To_String(Opcode_String) & ",";
+   Current : Integer := Opcode'First;
+   begin
+      for i in Opcode'Range loop
+         if Opcode(i) = ',' or i = Opcode'last then
+            Int_Vector.append(Integer'Value(Opcode(Current..i-1)));
+            Current := i + 1;
+         end if;                     
+      end loop;
+   -- To test print
+   -- for s of Int_Vector loop put(s'Image & '.'); end loop;
+   end Opcode_To_Int_Vec;
+   
 end Unbounded_Vector;

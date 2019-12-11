@@ -29,4 +29,7 @@ package Unbounded_Vector is
    procedure File_Vec_To_Int_Vec 
      (File_Vector: String_Vector.Vector; Int_Vector: in out Integer_Vector.Vector);
    
+   -- Converts an opcode string (day2) to a vector of integers
+   procedure Opcode_To_Int_Vec
+     (Opcode_String: Unbounded_String; Int_Vector: in out Integer_Vector.Vector);
 end Unbounded_Vector;
