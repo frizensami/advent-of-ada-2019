@@ -13,6 +13,12 @@ Advent of Code 2019, written in Ada + SPARK. The aim is to learn a new language 
 - `day<N>pkg.ads` is the "header file" for the package containing the code for the `N`th day. SPARK contracts are mostly found here.
 - `day<N>pkg.adb` is the "source file" containing the implementation code for the `N`th day's package. 
 
+## Building and Running
+- GNAT Programming Studio Community Edition (GPS) is recommended ([download here](https://www.adacore.com/download))
+- With GPS installed, open the project file (`aoc2019ada.gpr`).
+- To run the code, navigate to the correct day's file (say `day1.adb`) and click on `Build & Run day1.adb` in the top toolbar.
+- To run the SPARK prover, click on `SPARK > Prove All` in the top toolbar.
+
 ## Learning resources used for Ada + SPARK
 - [Official docs for Ada](https://learn.adacore.com/courses/intro-to-ada/chapters/imperative_language.html)
 - [Official docs for SPARK](https://learn.adacore.com/courses/intro-to-spark/chapters/01_Overview.html)
